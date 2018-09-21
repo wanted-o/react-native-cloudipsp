@@ -57,6 +57,7 @@ export default class CardFieldBase extends React.Component {
                 }
                 this.setState({__text__: text});
             }}
+            underlineColorAndroid="transparent"
         />);
     }
 }
