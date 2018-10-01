@@ -15,6 +15,7 @@ export default class CardFieldBase extends React.Component {
     }
 
     _setText = (text) => {
+        console.log('text', text)
         this.setState({__text__: text});
     }
 
