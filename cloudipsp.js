@@ -146,9 +146,10 @@ export class Card {
     __lunaCheck__ = (cardNumber) => {
         var sum = 0;
         var odd = true;
+        let cardNumberTemp = cardNumber.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
         for (var i = cardNumber.length - 1; i >= 0; i--) {
             try {
-                var num = Number(cardNumber.charAt(i));
+                var num = Number(cardNumberTemp.charAt(i));
                 odd = !odd;
                 if (odd) {
                     num *= 2;
@@ -489,7 +490,7 @@ export class Cloudipsp {
         }
 
         const rqBody = {
-            card_number: card.__getCardNumber__(),
+            card_number: card.__getCardNumber__().replace(/ /g, ''),
             expiry_date: buildExp(card.__getExpMm__(), card.__getExpYy__()),
             token: token,
             email: email,
