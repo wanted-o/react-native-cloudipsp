@@ -539,12 +539,11 @@ export class Cloudipsp {
                 return response.json();
             })
             .then((json) => {
-                console.log('json: ' + JSON.stringify(json));
                 let response = json.response;
                 if (response.response_status == 'success') {
                     return response;
                 } else {
-                    throw new Failure(response.error_message, response.error_code, response.request_id);
+                    // throw new Failure(response.error_message, response.error_code, response.request_id);
                 }
             });
 
