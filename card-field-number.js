@@ -13,7 +13,7 @@ export default class CardFieldNumber extends CardFieldBase {
     }
 
     _maxLength() {
-        return 19;
+        return 23;
     }
 }
 
