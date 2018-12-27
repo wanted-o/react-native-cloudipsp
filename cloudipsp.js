@@ -169,13 +169,14 @@ export class Card {
 
     isValidCardNumber = () => {
         let cardNumber = this.__getCardNumber__();
-        // if (!(12 <= cardNumber.length && cardNumber.length <= 23)) {
-        if (!(12 <= cardNumber.length && cardNumber.length <= 19)) {
+        // if (!(12 <= cardNumber.length && cardNumber.length <= 19)) {
+            console.log('cardNumber.length', cardNumber.length)
+        if (!(19 <= cardNumber.length && cardNumber.length <= 23)) {
             return false;
         }
-        if (!this.__lunaCheck__(cardNumber)) {
-            return false;
-        }
+        // if (!this.__lunaCheck__(cardNumber)) {
+        //     return false;
+        // }
         return true;
     }
 
@@ -492,8 +493,8 @@ export class Cloudipsp {
         }
 
         const rqBody = {
-            card_number: card.__getCardNumber__(),
-            // card_number: card.__getCardNumber__().replace(/ /g, ''),
+            // card_number: card.__getCardNumber__(),
+            card_number: card.__getCardNumber__().replace(/ /g, ''),
             expiry_date: buildExp(card.__getExpMm__(), card.__getExpYy__()),
             token: token,
             email: email,
@@ -543,10 +544,12 @@ export class Cloudipsp {
             })
             .then((json) => {
                 let response = json.response;
+                console.log('response', response)
                 if (response.response_status == 'success') {
                     return response;
                 } else {
-                    throw new Failure(response.error_message, response.error_code, response.request_id);
+                    return response;
+                    // throw new Failure(response.error_message, response.error_code, response.request_id);
                 }
             });
 
