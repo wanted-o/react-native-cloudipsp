@@ -163,12 +163,14 @@ export class Card {
                 return false;
             }
         }
-        return sum % 10 == 0 || cardNumber.length === 22 || cardNumber.length === 23;
+        return sum % 10 == 0;
+        // return sum % 10 == 0 || cardNumber.length === 22 || cardNumber.length === 23;
     }
 
     isValidCardNumber = () => {
         let cardNumber = this.__getCardNumber__();
-        if (!(12 <= cardNumber.length && cardNumber.length <= 23)) {
+        // if (!(12 <= cardNumber.length && cardNumber.length <= 23)) {
+        if (!(12 <= cardNumber.length && cardNumber.length <= 19)) {
             return false;
         }
         if (!this.__lunaCheck__(cardNumber)) {
