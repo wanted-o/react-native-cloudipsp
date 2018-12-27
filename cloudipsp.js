@@ -170,7 +170,6 @@ export class Card {
     isValidCardNumber = () => {
         let cardNumber = this.__getCardNumber__();
         // if (!(12 <= cardNumber.length && cardNumber.length <= 19)) {
-            console.log('cardNumber.length', cardNumber.length)
         if (!(19 <= cardNumber.length && cardNumber.length <= 23)) {
             return false;
         }
@@ -544,7 +543,6 @@ export class Cloudipsp {
             })
             .then((json) => {
                 let response = json.response;
-                console.log('response', response)
                 if (response.response_status == 'success') {
                     return response;
                 } else {
