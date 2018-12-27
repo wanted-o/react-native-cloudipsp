@@ -15,7 +15,8 @@ export default class CardFieldBase extends React.Component {
     }
 
     _setText = (text) => {
-        this.setState({__text__: text.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim()});
+        this.setState({ __text__: text });	
+        // this.setState({__text__: text.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim()});
     }
 
     _getText = () => {
