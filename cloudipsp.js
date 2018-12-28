@@ -228,6 +228,9 @@ export class Card {
     }
 
     isValidCard = () => {
+        console.log('this.isValidCardNumber()', this.isValidCardNumber())
+        console.log('this.isValidExpireDate()', this.isValidExpireDate())
+        console.log('this.isValidCvv()', this.isValidCvv())
         return this.isValidCardNumber() && this.isValidExpireDate() && this.isValidCvv();
     }
 }
@@ -389,7 +392,7 @@ export class Cloudipsp {
     }
 
     pay = (card:Card = req('card'), order:Order = req('order')) => {
-        if (! card.isValidCard()) {
+        if (!card.isValidCard()) {
             throw new Error('Card is not valid');
         }
 
@@ -490,9 +493,11 @@ export class Cloudipsp {
         const buildExp = (mm, yy) => {
             return (mm < 10 ? '0' : '') + mm + yy;
         }
+        console.log('modifiend', card.__getCardNumber__().replace(/ /g, ''))
+        console.log('not modifien', card.__getCardNumber__())
+                    // card_number: card.__getCardNumber__().replace(/ /g, ''),
 
         const rqBody = {
-            // card_number: card.__getCardNumber__(),
             card_number: card.__getCardNumber__().replace(/ /g, ''),
             expiry_date: buildExp(card.__getExpMm__(), card.__getExpYy__()),
             token: token,
@@ -546,8 +551,10 @@ export class Cloudipsp {
                 if (response.response_status == 'success') {
                     return response;
                 } else {
-                    return response;
-                    // throw new Failure(response.error_message, response.error_code, response.request_id);
+                                        console.log('response', response)
+
+                    // return response;
+                    throw new Failure(response.error_code);
                 }
             });
 
